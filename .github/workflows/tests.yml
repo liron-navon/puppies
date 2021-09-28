@@ -18,7 +18,7 @@ jobs:
       
       # install node.js
       - name: essentials (required by tfjs-node)
-        run: apt-get install build-essential
+        run: sudo apt-get install build-essential
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
