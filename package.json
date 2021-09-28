@@ -1,0 +1,16 @@
+{
+  "name": "puppies",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "lerna": "lerna",
+    "bootstrap": "lerna bootstrap",
+    "build": "lerna exec --stream -- yarn build ",
+    "test:ci": "lerna exec --stream -- yarn test:ci"
+  },
+  "devDependencies": {
+    "lerna": "^4.0.0"
+  }
+}

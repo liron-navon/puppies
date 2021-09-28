@@ -1,0 +1,5 @@
+[build]
+
+  base = "."
+  publish = "./packages/components/storybook-static"
+  command = "yarn && yarn bootstrap && yarn lerna -- exec yarn build:storybook --scope=puppies-components"
