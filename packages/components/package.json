@@ -9,7 +9,7 @@
     "test": "jest",
     "storybook": "start-storybook -p 6006",
     "build:storybook": "build-storybook",
-    "test:ci": "jest"
+    "test:ci": "jest --ci"
   },
   "dependencies": {
     "lit": "^2.0.0",
