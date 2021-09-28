@@ -12,6 +12,7 @@
     "test:ci": "jest --ci"
   },
   "dependencies": {
+    "@tensorflow-models/mobilenet": "^2.1.0",
     "lit": "^2.0.0",
     "lit-element": "^3.0.0"
   },
