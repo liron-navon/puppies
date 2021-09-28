@@ -9,7 +9,7 @@ describe('detectDogBreed', () => {
         expect(findDogBreed('Eskimo dog, husky')).toBe('husky');
         expect(findDogBreed('golden retriever')).toBe('golden retriever');
     });
-}
+})
 
 // import fs from 'fs';
 // import path from 'path';
