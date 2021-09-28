@@ -3,6 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import { detectImageObject, detectDogBreed } from './detectDogBreed';
 import * as tfnode from '@tensorflow/tfjs-node';
+import * as tf from '@tensorflow/tfjs';
 
 describe('detectDogBreed', () => {
     // in the browser we can just pass an img tag, but in node we need to decode the image type

@@ -1,5 +1,5 @@
 import * as mobilenet from '@tensorflow-models/mobilenet';
-import * as tf from '@tensorflow/tfjs'
+import * as tf from '@tensorflow/tfjs';
 import breedsMap from './breedsMap.json';
 
 export interface Prediction {
