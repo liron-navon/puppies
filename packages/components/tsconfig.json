@@ -1,0 +1,28 @@
+{
+    "compilerOptions": {
+        "allowJs": true,
+        "module": "commonjs",
+        "declaration": true,
+        "target": "ES6",
+        "outDir": "dist",
+        "lib": ["ES6", "DOM"],
+        "jsx": "preserve",
+        "skipDefaultLibCheck": true,
+        "sourceMap": true,
+        "experimentalDecorators": true,
+        "moduleResolution": "Node",
+        "plugins": [
+            {
+              "name": "ts-lit-plugin",
+              "strict": true
+            }
+          ]
+    },
+    "exclude": [
+        "node_modules",
+        "**/test.ts"
+    ],
+    "include": [
+        "src/**/*"
+    ],
+}
