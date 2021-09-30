@@ -1,9 +1,8 @@
-import "../mocks/tensorflow.mocks";
-import { normalizeDogBreed } from "./detectDogBreed";
+import "../../mocks/tensorflow.mocks";
+import { normalizeDogBreed } from "./classifyDogBreeds";
+import { classifyImage, classifyDogBreeds } from './classifyDogBreeds';
 
-import { classifyImage, classifyDogBreeds } from './detectDogBreed';
-
-describe('detectDogBreed', () => {
+describe('classify dog breeds', () => {
     /**
      * tfjs might return non existent sub breeds of dogs like Eskimo/Siberian husky, 
      * while the api we work with will only accept husky, 
@@ -22,7 +21,7 @@ describe('detectDogBreed', () => {
     })
 
 
-    describe('detectDogBreed', () => {
+    describe('classifyDogBreeds', () => {
         /**
          * The app is only meant for dog breeds, a banana is not a dog, 
          * therefore we need to filter such non dog images

@@ -1,4 +1,4 @@
-import { Prediction } from '../dog-breed-detector/detectDogBreed';
+import { Prediction } from '../api/classify-dog-breeds/classifyDogBreeds';
 
 /**
  * This file contains mocks for tensorflow operations

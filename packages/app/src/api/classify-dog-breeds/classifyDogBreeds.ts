@@ -1,6 +1,6 @@
 import * as mobilenet from '@tensorflow-models/mobilenet';
 import '@tensorflow/tfjs';
-import breedsMap from './breedsMap.json';
+import breedsMap from './dogBreedsMap.json';
 
 export interface Prediction {
     className: string;
