@@ -7,17 +7,15 @@
 //     }
 //   };
 
-  module.exports = {
-    launch: {
-      dumpio: true,
-      headless: true
-    },
-    browser: 'chromium',
-    // browserContext: 'default',
-    // server: {
-    //   command: `npm start`,
-    //   port: 3000,
-    //   launchTimeout: 10000,
-    //   debug: true,
-    // },
-  }
+let options = {};
+
+// if(process.env.CI === 'true') {
+//     options.browser = 'chromium'
+//     options.launch = {
+//         headless: true,
+//         args: ["--no-sandbox"],
+//         // executablePath: '/usr/bin/chromium-browser'
+//     }
+// }
+
+module.exports = options
