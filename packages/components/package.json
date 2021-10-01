@@ -10,8 +10,7 @@
     "build:watch": "tsc --watch",
     "build:docs": "build-storybook",
     "test": "jest",
-    "test:ci": "echo 'need to fix ci for puppeteer somehow'",
-    "xtest:ci": "start-server-and-test start:ci 6006 test"
+    "test:ci": "start-server-and-test start:ci 6006 test"
   },
   "dependencies": {
     "lit": "^2.0.0",
