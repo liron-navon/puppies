@@ -9,6 +9,10 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
 
+    env:
+      PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: true
+      PUPPETEER_EXECUTABLE_PATH: /opt/playwright-browsers/chromium-857950/chrome-linux/chrome
+
     strategy:
       matrix:
         node-version: [15.x]
@@ -27,19 +31,19 @@ jobs:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
       - name: install
-        uses: ianwalter/puppeteer-container@acc52cd2334ad9eaf6e1974562d263e0a711b7e8
+        uses: ianwalter/playwright-container@43940dfa7d309fe3569b9df407ae9e84dcbf2e7f
         with:
           args: yarn install
       - name: bootstrap
-        uses: ianwalter/puppeteer-container@acc52cd2334ad9eaf6e1974562d263e0a711b7e8
+        uses: ianwalter/playwright-container@43940dfa7d309fe3569b9df407ae9e84dcbf2e7f
         with:
           args: yarn bootstrap
       - name: build
-        uses: ianwalter/puppeteer-container@acc52cd2334ad9eaf6e1974562d263e0a711b7e8
+        uses: ianwalter/playwright-container@43940dfa7d309fe3569b9df407ae9e84dcbf2e7f
         with:
           args: yarn build   
       - name: test
-        uses: ianwalter/puppeteer-container@acc52cd2334ad9eaf6e1974562d263e0a711b7e8
+        uses: ianwalter/playwright-container@43940dfa7d309fe3569b9df407ae9e84dcbf2e7f
         with:
           args: yarn test:ci  
 
