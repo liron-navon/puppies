@@ -10,7 +10,7 @@
     "build:watch": "tsc --watch",
     "build:docs": "build-storybook",
     "test": "jest",
-    "test:ci": "jest"
+    "test:ci": "PORT=9999 jest"
   },
   "dependencies": {
     "lit": "^2.0.0",
