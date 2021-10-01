@@ -18,10 +18,21 @@ jobs:
         node-version: [15.x]
 
     steps:
+
+
+      - uses: actions/checkout@v2
+      - name: install chromium
+        run: sudo apt install chromium-browser
+
+      - uses: actions/checkout@v2
+      - name: chromium path
+        run: which chromium-browser
+      # install node.js
+
       - uses: actions/checkout@v2
       - name: fetch shallow git history
         run: git fetch --no-tags --prune --depth=1 origin +refs/heads/master:refs/remotes/origin/master
-      # install node.js
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
@@ -30,38 +41,40 @@ jobs:
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-      - name: install
-        uses: ianwalter/playwright-container@43940dfa7d309fe3569b9df407ae9e84dcbf2e7f
-        with:
-          args: yarn install
-      - name: bootstrap
-        uses: ianwalter/playwright-container@43940dfa7d309fe3569b9df407ae9e84dcbf2e7f
-        with:
-          args: yarn bootstrap
-      - name: build
-        uses: ianwalter/playwright-container@43940dfa7d309fe3569b9df407ae9e84dcbf2e7f
-        with:
-          args: yarn build   
-      - name: test
-        uses: ianwalter/playwright-container@43940dfa7d309fe3569b9df407ae9e84dcbf2e7f
-        with:
-          args: yarn test:ci  
 
-      # - name: install base dependencies
-      #   uses: borales/actions-yarn@v2.3.0
+
+      # - name: install
+      #   uses: ianwalter/playwright-container@43940dfa7d309fe3569b9df407ae9e84dcbf2e7f
       #   with:
-      #     cmd: install # will run `yarn install` command
-      # - name: bootstrap monorepo
-      #   uses: borales/actions-yarn@v2.3.0
+      #     args: yarn install
+      # - name: bootstrap
+      #   uses: ianwalter/playwright-container@43940dfa7d309fe3569b9df407ae9e84dcbf2e7f
       #   with:
-      #     cmd: bootstrap # will run `yarn bootstrap` command
-      #   env:
-      #     PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: 'true'
-      # - name: build packages
-      #   uses: borales/actions-yarn@v2.3.0
+      #     args: yarn bootstrap
+      # - name: build
+      #   uses: ianwalter/playwright-container@43940dfa7d309fe3569b9df407ae9e84dcbf2e7f
       #   with:
-      #     cmd: build # will run `build` command
-      # - name: test packages
-      #   uses: borales/actions-yarn@v2.3.0
+      #     args: yarn build   
+      # - name: test
+      #   uses: ianwalter/playwright-container@43940dfa7d309fe3569b9df407ae9e84dcbf2e7f
       #   with:
-      #     cmd: test:ci # will run `yarn test:ci` command
+      #     args: yarn test:ci  
+
+      - name: install base dependencies
+        uses: borales/actions-yarn@v2.3.0
+        with:
+          cmd: install # will run `yarn install` command
+      - name: bootstrap monorepo
+        uses: borales/actions-yarn@v2.3.0
+        with:
+          cmd: bootstrap # will run `yarn bootstrap` command
+        env:
+          PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: 'true'
+      - name: build packages
+        uses: borales/actions-yarn@v2.3.0
+        with:
+          cmd: build # will run `build` command
+      - name: test packages
+        uses: borales/actions-yarn@v2.3.0
+        with:
+          cmd: test:ci # will run `yarn test:ci` command
