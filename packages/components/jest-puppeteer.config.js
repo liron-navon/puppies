@@ -1,9 +1,11 @@
+const port = process.env.PORT || 6006;
+
 let options = {
     headless: true,
     args: ["--no-sandbox"],
     server: {
-        command: 'yarn start:ci',
-        port: 6006,
+        command: `start-storybook -p ${port} --ci --quiet`,
+        port: port,
       },
 };
 
