@@ -23,7 +23,10 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: install chromium for e2e tests
-        run: sudo apt-get install chromium-browser
+        run: |
+            sudo apt-get update
+            sudo apt-get install -y libgbm1
+            sudo apt-get install chromium-browser
       - uses: actions/cache@v2
         with:
           path: '**/node_modules'
