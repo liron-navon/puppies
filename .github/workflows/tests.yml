@@ -7,13 +7,7 @@ on:
 
 jobs:
   build:
-    vm:
-      runs-on: ubuntu-latest
-      steps:
-        - run: |
-            echo This job does not specify a container.
-            echo It runs directly on the virtual machine.
-          name: Run on VM
+    runs-on: ubuntu-20.04
     container: lironavon/docker-puppeteer-container:16.10.0
     steps:
       - name: fetch shallow git history
