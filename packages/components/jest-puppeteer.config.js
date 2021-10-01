@@ -11,9 +11,7 @@ let options = {};
 
 if(process.env.CI === 'true') {
     options = {
-        args: ['--no-sandbox', '--disable-setuid-sandbox'],
-        headless: true,
-        args: ['--use-gl=egl'],
+        headless: true
     }
 }
 
