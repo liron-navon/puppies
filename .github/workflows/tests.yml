@@ -22,31 +22,42 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-      - name: install chromium for e2e tests
-        run: |
-            sudo apt-get update
-            sudo apt-get install -y gconf-service libasound2 libatk1.0-0 libatk-bridge2.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget
-            sudo apt-get install -y libgbm-dev
-            sudo apt-get install -y chromium-browser
       - uses: actions/cache@v2
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-      - name: install base dependencies
-        uses: borales/actions-yarn@v2.3.0
+      - name: install
+        uses: ianwalter/puppeteer-container@acc52cd2334ad9eaf6e1974562d263e0a711b7e8
         with:
-          cmd: install # will run `yarn install` command
-      - name: bootstrap monorepo
-        uses: borales/actions-yarn@v2.3.0
+          args: yarn install
+      - name: bootstrap
+        uses: ianwalter/puppeteer-container@acc52cd2334ad9eaf6e1974562d263e0a711b7e8
         with:
-          cmd: bootstrap # will run `yarn bootstrap` command
-        env:
-          PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: 'true'
-      - name: build packages
-        uses: borales/actions-yarn@v2.3.0
+          args: yarn bootstrap
+      - name: build
+        uses: ianwalter/puppeteer-container@acc52cd2334ad9eaf6e1974562d263e0a711b7e8
         with:
-          cmd: build # will run `build` command
-      - name: test packages
-        uses: borales/actions-yarn@v2.3.0
+          args: yarn build   
+      - name: test
+        uses: ianwalter/puppeteer-container@acc52cd2334ad9eaf6e1974562d263e0a711b7e8
         with:
-          cmd: test:ci # will run `yarn test:ci` command
+          args: yarn test:ci  
+
+      # - name: install base dependencies
+      #   uses: borales/actions-yarn@v2.3.0
+      #   with:
+      #     cmd: install # will run `yarn install` command
+      # - name: bootstrap monorepo
+      #   uses: borales/actions-yarn@v2.3.0
+      #   with:
+      #     cmd: bootstrap # will run `yarn bootstrap` command
+      #   env:
+      #     PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: 'true'
+      # - name: build packages
+      #   uses: borales/actions-yarn@v2.3.0
+      #   with:
+      #     cmd: build # will run `build` command
+      # - name: test packages
+      #   uses: borales/actions-yarn@v2.3.0
+      #   with:
+      #     cmd: test:ci # will run `yarn test:ci` command
