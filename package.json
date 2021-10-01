@@ -8,8 +8,7 @@
     "lerna": "lerna",
     "bootstrap": "lerna bootstrap",
     "build": "lerna exec --stream -- yarn build ",
-    "xtest:ci": "lerna exec --stream --since origin/master -- yarn test:ci ",
-    "test:ci": "lerna exec --stream -- yarn test:ci ",
+    "test:ci": "lerna exec --stream --since origin/master -- yarn test:ci ",
     "prepare": "husky install"
   },
   "devDependencies": {

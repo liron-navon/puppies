@@ -3,7 +3,6 @@ const port = process.env.PORT || 6006;
 let options = {
     launch: {
         headless: true,
-        // devtools: true,
         args: [
           '--ignore-certificate-errors',
           '--no-sandbox',
