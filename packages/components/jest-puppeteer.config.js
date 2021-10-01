@@ -1,10 +1,10 @@
-let options = {};
-
-if(process.env.CI === 'true') {
-    options = {
-        headless: true,
-        args: ["--no-sandbox"],
-    }
-}
+let options = {
+    headless: true,
+    args: ["--no-sandbox"],
+    server: {
+        command: 'yarn start:ci',
+        port: 6006,
+      },
+};
 
 module.exports = options
