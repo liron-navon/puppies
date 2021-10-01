@@ -18,7 +18,6 @@ jobs:
     steps:
       - name: fetch shallow git history
         run: git fetch --no-tags --prune --depth=1 origin +refs/heads/master:refs/remotes/origin/master
-
       - uses: actions/cache@v2
         with:
           path: '**/node_modules'
