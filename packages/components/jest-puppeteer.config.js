@@ -9,13 +9,12 @@
 
 let options = {};
 
-// if(process.env.CI === 'true') {
-//     options.browser = 'chromium'
-//     options.launch = {
-//         headless: true,
-//         args: ["--no-sandbox"],
-//         // executablePath: '/usr/bin/chromium-browser'
-//     }
-// }
+if(process.env.CI === 'true') {
+    options = {
+        args: ['--no-sandbox', '--disable-setuid-sandbox'],
+        headless: true,
+        args: ['--use-gl=egl'],
+    }
+}
 
 module.exports = options
