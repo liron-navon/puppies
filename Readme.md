@@ -30,7 +30,7 @@ yarn build
 
 ### Testing
 
-The tests in the project are written with Jest for unit tests and Jest + "@testing-library/react" for integration tests.
+The tests in the project are written with Jest for unit tests and Jest + puppeteer for integration tests for the web components.
 
 You can run this command in the root to test all the projects
 
@@ -40,9 +40,11 @@ Or you can run in each project:
 
 yarn test
 
+* notice, in 'packages/components' most tests are integration, and require the running of the live documentation to test, check the documentation section for instructions.
+
 ### Documentation
 
-Of course no components library is complete without proper documentation, for this I chose to use Storybook, to view the documentation you can go [here](https://app.netlify.com/sites/puppies-components-documentation/deploys)  or run in "packages/components" the command:
+Of course no components library is complete without proper documentation, for this I chose to use Storybook, to view the documentation you can go [here](https://app.netlify.com/sites/puppies-components-documentation/deploys) or run in "packages/components" the command:
   
 
-yarn storybook
+yarn start

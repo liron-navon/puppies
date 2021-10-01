@@ -102,7 +102,6 @@ export class LazyLoadedGalleryComponent extends LitElement {
     return css`
     .root {
       overflow: hidden;
-      background: red;
       width: 100%;
       height: 100%;
     }
@@ -129,8 +128,7 @@ export class LazyLoadedGalleryComponent extends LitElement {
       height:100%;
       object-fit: cover;
       object-position: center;
-    }
-    `
+    }`
   }
 
   render() {

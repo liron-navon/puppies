@@ -1,5 +1,5 @@
 import { html } from 'lit';
-import { imagesList } from './images-list';
+import { imagesList } from './images-list.mocks';
 import { defaultConfig, GalleryConfig } from './lazy-loaded-gallery.component';
 
 export default {
