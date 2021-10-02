@@ -3,7 +3,7 @@ const port = process.env.PORT || 6006;
 let options = {
     launch: {
         headless: true,
-        args: process.env.CI ? [
+        args: ci ? [
           '--ignore-certificate-errors',
           '--no-sandbox',
           '--disable-setuid-sandbox',

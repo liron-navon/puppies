@@ -19,11 +19,6 @@ jobs:
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-
-      - name: printenv
-        run: printenv
-        env:
-          CI: true
       - name: install base dependencies
         run: yarn install
       - name: bootstrap monorepo
@@ -31,6 +26,6 @@ jobs:
       - name: build packages
         run: yarn build
       - name: test packages
-        run: yarn test:ci
         env:
           CI: true
+        run: yarn test:ci
