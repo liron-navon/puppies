@@ -12,10 +12,10 @@ let options = {
           '--disable-gpu'
               ] : []
     },
-    server: {
-        command: `start-storybook -p ${port} --ci --quiet`,
-        port: port,
-      },
+    // server: {
+    //     command: `start-storybook -p ${port} --ci --quiet`,
+    //     port: port,
+    //   },
 };
 
 module.exports = options
