@@ -24,7 +24,10 @@ describe('pup-image-upload', () => {
         {
           dataTransfer: {
             files: [
-              new File(["drop"], "filename.txt", { type: "image/jpeg" })
+              new File(["drop"], "filename.txt", {
+                type: "image/jpeg",
+                lastModified: 1633195296568
+              })
             ]
           }
         }
@@ -34,7 +37,10 @@ describe('pup-image-upload', () => {
       imageUploader.inputChangeHandler({
         target: {
           files: [
-            new File(["input"], "filename.txt", { type: "image/jpeg" })
+            new File(["input"], "filename.txt", {
+              type: "image/jpeg",
+              lastModified: 1633195296568
+            })
           ]
         }
       } as unknown as InputEvent)
