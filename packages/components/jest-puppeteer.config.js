@@ -1,7 +1,5 @@
 const port = process.env.PORT || 6006;
-
-const ci = Boolean(process.env.CI);
-console.log('process.env.CI', ci);
+const ci = Boolean(process.env.CI || false);
 
 let options = {
     launch: {
