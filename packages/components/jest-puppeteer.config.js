@@ -1,18 +1,17 @@
-// module.exports = {
-//     launch: {
-//       headless: true,
-//       ignoreDefaultArgs: ["--disable-extensions"],
-//       args: ["--no-sandbox"],
-//     //   executablePath: "chrome.exe"
-//     }
-//   };
+const port = process.env.PORT || 6006;
+const ci = Boolean(process.env.CI || false);
 
-let options = {};
-
-if(process.env.CI === 'true') {
-    options = {
-        headless: true
+let options = {
+    launch: {
+        headless: true,
+        args: ci ? [
+          '--ignore-certificate-errors',
+          '--no-sandbox',
+          '--disable-setuid-sandbox',
+          '--disable-accelerated-2d-canvas',
+          '--disable-gpu'
+              ] : []
     }
-}
+};
 
 module.exports = options
