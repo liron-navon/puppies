@@ -1,4 +1,3 @@
-const port = process.env.PORT || 6006;
 const ci = Boolean(process.env.CI || false);
 
 let options = {
