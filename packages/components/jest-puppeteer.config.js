@@ -11,11 +11,7 @@ let options = {
           '--disable-accelerated-2d-canvas',
           '--disable-gpu'
               ] : []
-    },
-    // server: {
-    //     command: `start-storybook -p ${port} --ci --quiet`,
-    //     port: port,
-    //   },
+    }
 };
 
 module.exports = options
