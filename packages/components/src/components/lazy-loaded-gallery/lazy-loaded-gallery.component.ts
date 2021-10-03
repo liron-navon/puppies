@@ -18,6 +18,17 @@ export const defaultConfig: Readonly<GalleryConfig> = {
 
 @customElement('pup-lazy-loaded-gallery')
 export class LazyLoadedGalleryComponent extends LitElement {
+  // a flag to determine if the component is loaded into dom
+  private didLoad: boolean = false;
+  // the images that needs to be rendered
+  private imagesToRender: string[] = [];
+  // the internal configuration used internally
+  private internalConfig: GalleryConfig;
+  // the configuration passed to the component
+  config: GalleryConfig;
+  // a list of images to load
+  images: string[] = [];
+
   static get properties() {
     return {
       images: {
@@ -33,24 +44,18 @@ export class LazyLoadedGalleryComponent extends LitElement {
     }
   }
 
-  private imagesToRender: string[] = [];
-  // the internal configuration used internally
-  private internalConfig: GalleryConfig;
-  // the configuration passed to the component
-  config: GalleryConfig;
-  // a list of images to load
-  images: string[] = [];
-
   connectedCallback() {
     super.connectedCallback()
-    this.internalConfig = {
-      ...defaultConfig,
-      ...(this.config || {})
-    }
+    this.setupComponent();
+    this.didLoad = true;
+  }
 
-    const { imagesPerRow, linesBuffer } = this.galleryCalculation;
-    this.imagesToRender = this.images.slice(0, (imagesPerRow * linesBuffer * 2));
-    this.onScroll.bind(this);
+  // reset the component when some properties change
+  requestUpdate(name?: PropertyKey, oldValue?: unknown) {
+    if ((name === 'images' || name === 'config') && this.didLoad) {
+      this.setupComponent();
+    }
+    return super.requestUpdate(name, oldValue);
   }
 
   get galleryCalculation(): GalleryImagesCalculations {
@@ -59,6 +64,17 @@ export class LazyLoadedGalleryComponent extends LitElement {
       this.internalConfig,
       this.imagesToRender.length
     );
+  }
+
+  setupComponent() {
+    this.internalConfig = {
+      ...defaultConfig,
+      ...(this.config || {})
+    };
+
+    const { imagesPerRow, linesBuffer } = this.galleryCalculation;
+    this.imagesToRender = this.images.slice(0, (imagesPerRow * linesBuffer * 2));
+    this.onScroll.bind(this);
   }
 
   onScroll(event: Event) {
@@ -133,7 +149,7 @@ export class LazyLoadedGalleryComponent extends LitElement {
   }
 }
 
-export interface LazyLoadedGalleryComponentAttributes extends React.HTMLAttributes<{}> {
+export interface LazyLoadedGalleryComponentAttributes extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> {
   primaconfigry?: GalleryConfig;
   images: string[];
 }

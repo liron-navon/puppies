@@ -5,5 +5,14 @@ export const fetchAllDogBreedImages = async (dogBreed: string): Promise<string[]
     const url = `${API_URL}/breed/${dogBreed}/images`;
     const response = await fetch(url);
     const json = await response.json();
-    return json.message as string[];
+    return json.message;
+}
+
+type BreedsMap = Record<string, string[]>;
+
+export const fetchDogBreedsList = async (): Promise<BreedsMap> => {
+    const url = `${API_URL}/breed/list/all`;
+    const response = await fetch(url);
+    const json = await response.json();
+    return json.message;
 }

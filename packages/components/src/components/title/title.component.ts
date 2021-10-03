@@ -27,6 +27,6 @@ export class TitleComponent extends LitElement {
   }
 }
 
-export interface TitleComponentAttributes extends React.HTMLAttributes<{}> {
+export interface TitleComponentAttributes extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> {
   primary: boolean;
 }

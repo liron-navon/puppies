@@ -1,4 +1,4 @@
-import "../../mocks/tensorflow.mocks";
+import "./tensorflow.mocks";
 import { normalizeDogBreed } from "./classifyDogBreeds";
 import { classifyImage, classifyDogBreeds } from './classifyDogBreeds';
 

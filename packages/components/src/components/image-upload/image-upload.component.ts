@@ -2,11 +2,13 @@ import { LitElement, html, css } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map';
 
-export interface ImageUploadEvent extends CustomEvent {
+export interface ImageUploadEvent extends Event {
   detail: {
     image: string
   }
 }
+
+export const imageUploadEventName: Readonly<string> = 'onImageUpload';
 
 @customElement('pup-image-upload')
 export class ImageUploadComponent extends LitElement {
@@ -25,7 +27,7 @@ export class ImageUploadComponent extends LitElement {
   }
 
   dispatchImageUploadedEvent() {
-    const event: ImageUploadEvent = new CustomEvent("onImageUpload", {
+    const event: ImageUploadEvent = new CustomEvent(imageUploadEventName, {
       detail: {
         image: this.imageUrl
       }
@@ -38,6 +40,9 @@ export class ImageUploadComponent extends LitElement {
   }
 
   handleFile(file: File) {
+    if(!file.type || !file.type.startsWith('image')) {
+      return;
+    }
     const reader = new FileReader();
     reader.addEventListener("load", () => {
       this.imageUrl = reader.result as string;
@@ -109,4 +114,7 @@ export class ImageUploadComponent extends LitElement {
     </div>
     `;
   }
+}
+
+export interface ImageUploadComponentAttributes extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> {
 }

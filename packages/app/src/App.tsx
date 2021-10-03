@@ -1,12 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import { ImageRecognition } from './components/ImageRecognition';
+import { ImageGallery } from './components/ImageGallery';
+import { DogBreedPrediction } from './api/classify-dog-breeds/classifyDogBreeds';
+// import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  const [ classification, setClassification ] = useState<DogBreedPrediction[]>();
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+
+        <ImageRecognition onRecognition={setClassification}/>
+        { classification &&  <ImageGallery classifications={classification}/>}
+
+        {/* <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
@@ -18,7 +26,7 @@ function App() {
         >
           Learn React
         </a>
-        <pup-title primary>Main title</pup-title>
+        <pup-title primary>Main title</pup-title> */}
       </header>
     </div>
   );
