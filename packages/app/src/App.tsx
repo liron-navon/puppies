@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { ImageRecognition } from './components/ImageRecognition/ImageRecognition';
 import { DogBreedPrediction } from './api/classify-dog-breeds/classifyDogBreeds';
-import './App.css';
 import { fetchAllDogBreedImages } from './api/dogs/dogs';
+import { Gallery } from './components/Gallery/Gallery';
+import { AppLoadingState, LoadingState } from './components/AppLoadingState/AppLoadingState';
+import { ErrorType, AppError } from './components/AppError/AppError';
 import Alert from '@mui/material/Alert';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import { Gallery } from './components/Gallery/Gallery';
-import { AppLoadingState, LoadingState } from './components/AppLoadingState/AppLoadingState';
-import { ErrorType, AppError } from './components/AppError/AppError';
+import './App.css';
 
 function App() {
   const [dogBreed, setDogBreed] = useState<string>();
@@ -52,7 +52,6 @@ function App() {
     }
   }
   const onRecognitionStart = () => setLoadingState(LoadingState.Analyzing);
-
   return (
     <div className="App">
       <AppBar position="static">

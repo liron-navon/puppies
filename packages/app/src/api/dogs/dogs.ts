@@ -12,7 +12,7 @@ export const fetchAllDogBreedImages = async (dogBreed: string): Promise<string[]
     return json.message;
 }
 
-type BreedsMap = Record<string, string[]>;
+export type BreedsMap = Record<string, string[]>;
 
 export const fetchDogBreedsList = async (): Promise<BreedsMap> => {
     const url = `${API_URL}/breed/list/all`;

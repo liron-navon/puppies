@@ -1,7 +1,8 @@
 import { Prediction } from './classifyDogBreeds';
 
 /**
- * This file contains mocks for tensorflow operations
+ * This file contains mocks for tensorflow operations,
+ * import it at the top of the test files
  */
 
 const classificationMocks = {
