@@ -1,7 +1,8 @@
-import { Prediction } from '../api/classify-dog-breeds/classifyDogBreeds';
+import { Prediction } from './classifyDogBreeds';
 
 /**
- * This file contains mocks for tensorflow operations
+ * This file contains mocks for tensorflow operations,
+ * import it at the top of the test files
  */
 
 const classificationMocks = {
@@ -15,7 +16,7 @@ const classificationMocks = {
     { "className": "cocker spaniel, English cocker spaniel, cocker", "probability": 0.005890714004635811 },
     { "className": "Labrador retriever", "probability": 0.0011467165313661098 }
   ],
-  'huskey': [
+  'husky': [
     { "className": "Eskimo dog, husky", "probability": 0.6533669233322144 },
     { "className": "Siberian husky", "probability": 0.1835794746875763 },
     { "className": "malamute, malemute, Alaskan malamute", "probability": 0.12867644429206848 }
@@ -26,7 +27,7 @@ export const tfjs = jest.mock('@tensorflow/tfjs', () => ({}));
 export const mobilenet = jest.mock('@tensorflow-models/mobilenet', () => ({
   load: () => Promise.resolve({
     classify: (img: HTMLImageElement) => {
-      if(img.id === 'error') {
+      if (img.id === 'error') {
         return Promise.reject('mocked test error');
       }
       return Promise.resolve(classificationMocks[img.id]);

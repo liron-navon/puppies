@@ -1,0 +1,14 @@
+.image-recognition--image {
+    width: 150px;
+    height: 150px;
+    margin-top: 20px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.image-recognition--upload-container {
+    max-width: 150px;
+    height: 100px;
+    font-size: 1rem;
+    margin: 20px;
+}

@@ -2,11 +2,13 @@ import { LitElement, html, css } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map';
 
-export interface ImageUploadEvent extends CustomEvent {
+export interface ImageUploadEvent extends Event {
   detail: {
     image: string
   }
 }
+
+export const imageUploadEventName: Readonly<string> = 'onImageUpload';
 
 @customElement('pup-image-upload')
 export class ImageUploadComponent extends LitElement {
@@ -25,7 +27,7 @@ export class ImageUploadComponent extends LitElement {
   }
 
   dispatchImageUploadedEvent() {
-    const event: ImageUploadEvent = new CustomEvent("onImageUpload", {
+    const event: ImageUploadEvent = new CustomEvent(imageUploadEventName, {
       detail: {
         image: this.imageUrl
       }
@@ -38,6 +40,9 @@ export class ImageUploadComponent extends LitElement {
   }
 
   handleFile(file: File) {
+    if(!file.type || !file.type.startsWith('image')) {
+      return;
+    }
     const reader = new FileReader();
     reader.addEventListener("load", () => {
       this.imageUrl = reader.result as string;
@@ -76,20 +81,37 @@ export class ImageUploadComponent extends LitElement {
   static get styles() {
     return css`
     .root {
-      padding: 10px;
       width: 100%;
       height: 100%;
-      border: 1px solid black;
+      border: 2px dashed grey;
+      transition: all 0.32s ease-in-out;
     }
     .root-dragover {
-      border: 1px solid red;
+      border-color: blue;
+      opacity: 50%;
+    }
+    .root:hover {
+      opacity: 50%;
     }
     .form {
+      position: relative;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       align-content: space-between;
       height: 100%;
+      justify-content: center;
+      align-items: center;
+    }
+    .input {
+      opacity: 0%;
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      cursor: pointer;
+    }
+    .img {
+      height: 50%;
     }
     `
   }
@@ -103,10 +125,14 @@ export class ImageUploadComponent extends LitElement {
       @dragover="${this.dragOverHandler}"
       >
         <form class="form">
-        <p>Upload file</p>
-        <input type="file" accept="image/*" @change="${this.inputChangeHandler}">
+        <span>Drop a file or click here</span>
+        <img class="img" src="https://cdn1.iconfinder.com/data/icons/hawcons/32/698394-icon-130-cloud-upload-1024.png" />
+        <input name="image upload" class="input" type="file" accept="image/*" @change="${this.inputChangeHandler}">
       </form>
     </div>
     `;
   }
+}
+
+export interface ImageUploadComponentAttributes extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> {
 }

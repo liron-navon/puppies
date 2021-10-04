@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
         "allowJs": true,
-        "module": "commonjs",
+        "module": "CommonJS",
         "declaration": true,
         "target": "ES6",
         "outDir": "dist",
