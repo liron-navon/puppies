@@ -6,25 +6,21 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/82f63a09-de0e-4741-aa72-bd223ed10c1c/deploy-status)](https://app.netlify.com/sites/puppies-components-documentation/deploys) Components docs
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/0bec6d93-60c8-4fa9-9f32-1f59cd87056d/deploy-status)](https://app.netlify.com/sites/puppies-app/deploys) Preview
+[![Netlify Status](https://api.netlify.com/api/v1/badges/0bec6d93-60c8-4fa9-9f32-1f59cd87056d/deploy-status)](https://app.netlify.com/sites/puppies-app/deploys) App website
 
-The app is built with as a monorepo with lerna and uses yarn as the package manager of choice - it was requested to make use of a web component library as well as react, and I figured the easy and efficient way to do si is in a monorepo, containing 2 packages -
+The app is built as a monorepo with lerna and uses yarn as the package manager of choice - it was requested to make use of a web component library (lit) or react - I chose to just use both, and I figured the easy and efficient way to do so is in a monorepo, containing 2 packages -
 
-**/packages/app (puppies-app)** - written in react and makes use of a web components library.
+**/packages/app (puppies-app)** - written in react and makes use of a web components library, tested in jest with enzyme.
 
-**/packages/components (puppies-components)** - written in lit-elements
+**/packages/components (puppies-components)** - written in lit-elements, tested with jest-puppeteer
 
 ### Building and setup
 
-As I wrote above, the project is built with lerna, so the first step will be to install lerna, if you don't want lerna to exist globally just install the root dependencies with:
+Install dependencies
 
 yarn
 
-Then we need to install the dependencies for all the packages
-
-yarn bootstrap
-
-Now we can build all the packages through lerna, if you want to build individual projects, the command is the same but should be run inside the project's directory.
+Now we can build all the packages through lerna.
 
 yarn build
 
@@ -44,7 +40,6 @@ yarn test
 
 ### Documentation
 
-Of course no components library is complete without proper documentation, for this I chose to use Storybook, to view the documentation you can go [here](https://app.netlify.com/sites/puppies-components-documentation/deploys) or run in "packages/components" the command:
-  
+Of course no components library is complete without proper documentation, for this I chose to use Storybook, to view the documentation you can go [here](https://puppies-components-documentation.netlify.app/) or run in "packages/components" the command:
 
 yarn start
