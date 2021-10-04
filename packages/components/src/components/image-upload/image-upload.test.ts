@@ -1,6 +1,6 @@
 import { getTestUrl } from "../../test-utils/test-server";
 import { ImageUploadEvent, ImageUploadComponent } from './image-upload.component';
-const path = require('path');
+import waitForExpect from 'wait-for-expect';
 
 describe('pup-image-upload', () => {
   beforeAll(async () => {
@@ -46,10 +46,12 @@ describe('pup-image-upload', () => {
       } as unknown as InputEvent)
     });
 
-    const testImages = await page.evaluate(() => (window as any).testImages);
-    expect(testImages).toEqual([
-      "data:image/jpeg;base64,ZHJvcA==",
-      "data:image/jpeg;base64,aW5wdXQ="
-    ]);
+    await waitForExpect(async () => {
+      const testImages = await page.evaluate(() => (window as any).testImages);
+      expect(testImages).toEqual([
+        "data:image/jpeg;base64,ZHJvcA==",
+        "data:image/jpeg;base64,aW5wdXQ="
+      ]);
+    })
   })
 })
