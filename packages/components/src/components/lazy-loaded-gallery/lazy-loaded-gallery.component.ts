@@ -121,7 +121,7 @@ export class LazyLoadedGalleryComponent extends LitElement {
       flex-wrap: wrap;
       justify-content: center;
     }
-    img {
+    .img {
       width:100%; 
       height:100%;
       object-fit: cover;
@@ -139,7 +139,7 @@ export class LazyLoadedGalleryComponent extends LitElement {
           ${repeat(this.imagesToRender, id => id, item => {
       return html`
               <div class="image-wrapper" style="${styleMap(imageWrapperStyle)}">
-                <img loading="lazy" src="${item}" alt="${this.internalConfig.alt}"/>
+                <img class="img" loading="lazy" src="${item}" alt="${this.internalConfig.alt}"/>
               </div>`
     })}
         </div>
@@ -150,6 +150,6 @@ export class LazyLoadedGalleryComponent extends LitElement {
 }
 
 export interface LazyLoadedGalleryComponentAttributes extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> {
-  primaconfigry?: GalleryConfig;
-  images: string[];
+  config?: string; // a stringified GalleryConfig
+  images?: string; // a stringified list of images
 }

@@ -44,9 +44,9 @@ describe('classify dog breeds', () => {
             expect(breeds[2].breed).toBe('retriever');
         });
 
-        it('can detect huskey breed', async () => {
+        it('can detect husky breed', async () => {
             const image = document.createElement('img');
-            image.id = 'huskey'
+            image.id = 'husky'
             const breeds = await classifyDogBreeds(image);
             expect(breeds[0].breed).toBe('husky');
             expect(breeds[1].breed).toBe('husky');
@@ -60,9 +60,9 @@ describe('classify dog breeds', () => {
         });
     })
 
-    it('can provide predictions for a huskey image', async () => {
+    it('can provide predictions for a husky image', async () => {
         const image = document.createElement('img');
-        image.id = 'huskey'
+        image.id = 'husky'
         const predictions = await classifyImage(image);
         expect(predictions[0].className).toBe('Eskimo dog, husky');
         expect(predictions[1].className).toBe('Siberian husky');
